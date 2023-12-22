@@ -1,14 +1,15 @@
 const express = require("express");
-const morgan = require("morgan");
 const bodyParse = require("body-parser");
 const sequelize = require("./src/db/sequelize");
 
 const app = express();
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 sequelize.initDb();
 
-app.use(morgan("dev")).use(bodyParse.json());
+app.get("/", (req, res) => {
+  res.json("Hello Renders");
+});
 
 app.get("/", (req, res) => res.send("hello there"));
 app.get("/test", (req, res) => res.send("this is test endpoint mate"));
