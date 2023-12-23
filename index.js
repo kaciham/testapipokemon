@@ -8,7 +8,9 @@ const port = process.env.PORT || 3333;
 sequelize.initDb();
 
 app.get("/", (req, res) => {
-  res.json("Hello Renders");
+  const message = "hi there, you're online !! ";
+  const message2 = "isn't that awesome ?! ";
+  res.json({ message, message2 });
 });
 
 app.get("/", (req, res) => res.send("hello there"));
