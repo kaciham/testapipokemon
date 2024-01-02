@@ -6,12 +6,12 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 const name = process.env.DB_NAME;
-const username = process.env.DB_USER;
+const usernamedb = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_HOST;
 
-const sequelize = new Sequelize(name, username, password, {
-  host: host,
+const sequelize = new Sequelize(name, usernamedb, password, {
+  host,
   dialect: "mysql",
   // dialectOptions: {
   //   timezone: "Etc/GMT+1",
@@ -37,7 +37,6 @@ const initDb = () => {
   return sequelize
     .sync({ force: true })
     .then(() => {
-      console.log("test db init");
       pokemons.map((pokemon) => {
         Pokemon.create({
           name: pokemon.name,
